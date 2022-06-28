@@ -1,6 +1,6 @@
 import {View,TouchableOpacity,Text,Image,ImageBackground,StyleSheet} from 'react-native'
 import {Component} from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default class Accueil extends Component{
     constructor(props){
@@ -9,7 +9,7 @@ export default class Accueil extends Component{
             chants:false,
             accueil:true,
             reglages:false,
-            lumiere:[],
+            lumiere:[{'titre':"En toi j'ai trouvé",'auteur':"Soeur Shany",'contenu':"En toi j'ai trouvé...."},{'titre':"En toi j'ai trouvé",'auteur':"Soeur Shany",'contenu':"En toi j'ai trouvé...."}],
             maman:[],
             ecodim:[],
         } 
@@ -17,84 +17,81 @@ export default class Accueil extends Component{
 
     render(){
         if(this.state.chants==true){
-            return(
-                                
+            return(                                
                 <ImageBackground source={require('../assets/appFO1.png')} style={{height:'100%',width:'100%'}}>
-
-                <View style={style.v1}>
-                <View style={{backgroundColor:"#6767ff",flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center',width:'80%',height:'8%',borderRadius:10,position:'absolute',top:15}}>
-                    <TouchableOpacity onPress={()=>{this.setState({chants:true})}}><View style={{backgroundColor:"#07080d",borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Chants</Text></View> </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.setState({accueil:true,chants:false})}}><View style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Accueil</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{this.setState({reglages:true,chants:false})}}><View style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Reglages</Text></View></TouchableOpacity>
-                </View>
-                <View style={{height:'40%',width:'80%',justifyContent:'space-evenly'}}>
-                <TouchableOpacity
-                    onPress={
-                        ()=>{
-                            this.state['chorale'] = "lumiere";
-                            axios.put("http://127.0.0.1:8080/accueil/lumiere");
-                            axios.put("http://127.0.1:8080/accueil/lumiere").then((response)=>{        
-                                this.setState({lumiere:response.data})
-                                this.props.navigation.navigate("Liste",this.state)
-                            })
-                            
-                        }
-                    }
-                >
-                    <View style={style.v2}>
-                        <Text style={style.t1}>Chansons de la chorale lumiere</Text>
+                    <View style={style.v1}>
+                    <View style={{backgroundColor:"#6767ff",flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center',width:'80%',height:'8%',borderRadius:10,position:'absolute',top:15}}>
+                        <TouchableOpacity onPress={()=>{this.setState({accueil:true,chants:false})}} style={{backgroundColor:'#07080d',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Chants</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{this.setState({accueil:true,chants:false})}} style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Accueil</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{this.setState({reglages:true,chants:false})}} style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Reglages</Text></TouchableOpacity>
                     </View>
+                    <View style={{height:'40%',width:'80%',justifyContent:'space-evenly'}}>
+                    <TouchableOpacity
+                        onPress={
+                            ()=>{
+                                this.state['chorale'] = "lumiere";
+                                // axios.put("http://127.0.0.1:8080/accueil/lumiere");
+                                // axios.put("http://127.0.1:8080/accueil/lumiere").then((response)=>{        
+                                    // this.setState({lumiere:response.data})
+                                    this.setState({lumiere:{'titre':"En toi j'ai trouvé",'auteur':"Soeur Shany",'contenu':"En toi j'ai trouvé...."}})
+                                    this.props.navigation.navigate("Liste",this.state)
+                                // })
+                                
+                            }
+                        }
+                    >
+                        <View style={style.v2}>
+                            <Text style={style.t1}>Chansons de la chorale lumiere</Text>
+                        </View>
+                        
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={
+                            ()=>{
+                                // this.state['chorale'] = "maman"
+                                // axios.put("http://127.0.0.1:8080/accueil/maman");
+                                // axios.put("http://127.0.1:8080/accueil/maman").then((response)=>{        
+                                //     this.setState({maman:response.data})
+                                //     this.props.navigation.navigate("Liste",this.state)
+                                // })
+                            }
+                        }
+                    >
+                        <View style={style.v2}>
+                            <Text style={style.t1}>Chansons de la chorale des mamans</Text>
+                        </View>
+                        
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={
+                            ()=>{
+                                // this.state['chorale'] = "ecodim"
+                                // axios.put("http://127.0.0.1:8080/accueil/ecodim");
+                                // axios.put("http://127.0.1:8080/accueil/ecodim").then((response)=>{        
+                                //     this.setState({ecodim:response.data})
+                                //     this.props.navigation.navigate("Liste",this.state)
+                                // })
+                            }
+                        }
+                    >
+                        <View style={style.v2}>
+                            <Text style={style.t1}>Chansons de la chorale de l'ecole de dimanche</Text>
+                        </View>
                     
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={
-                        ()=>{
-                            this.state['chorale'] = "maman"
-                            axios.put("http://127.0.0.1:8080/accueil/maman");
-                            axios.put("http://127.0.1:8080/accueil/maman").then((response)=>{        
-                                this.setState({maman:response.data})
-                                this.props.navigation.navigate("Liste",this.state)
-                            })
-                        }
-                    }
-                >
-                    <View style={style.v2}>
-                        <Text style={style.t1}>Chansons de la chorale des mamans</Text>
+                    </TouchableOpacity>
                     </View>
-                    
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={
-                        ()=>{
-                            this.state['chorale'] = "ecodim"
-                            axios.put("http://127.0.0.1:8080/accueil/ecodim");
-                            axios.put("http://127.0.1:8080/accueil/ecodim").then((response)=>{        
-                                this.setState({ecodim:response.data})
-                                this.props.navigation.navigate("Liste",this.state)
-                            })
-                        }
-                    }
-                >
-                    <View style={style.v2}>
-                        <Text style={style.t1}>Chansons de la chorale de l'ecole de dimanche</Text>
                     </View>
-                   
-                </TouchableOpacity>
-                </View>
-                </View>
-                </ImageBackground>
-            
-        )
-
+                </ImageBackground>            
+            )
         }
         if(this.state.accueil==true){
             return(                                
                 <ImageBackground source={require('../assets/appFO1.png')} style={{height:'100%',width:'100%'}}>
                     <View style={style.v1}>
                         <View style={{backgroundColor:"#6767ff",flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center',width:'80%',height:'8%',borderRadius:10,position:'absolute',top:15}}>
-                            <TouchableOpacity onPress={()=>{this.setState({chants:true,accueil:false})}}><View style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Chants</Text></View> </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{this.setState({accueil:true})}}><View style={{backgroundColor:"#07080d",borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Accueil</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{this.setState({reglages:true,accueil:false})}}><View style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Reglages</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{this.setState({chants:true,accueil:false})}} style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Chants</Text></TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{this.setState({accueil:true})}} style={{backgroundColor:"#07080d",borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Accueil</Text></TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{this.setState({reglages:true,accueil:false})}} style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Reglages</Text></TouchableOpacity>
                         </View>
                         <View style={{height:'60%',width:'90%',justifyContent:'space-evenly',alignContent:'center',alignItems:'center'}}>
                             <View style={{height:'10%',width:'50%',alignContent:'center',alignItems:'center',justifyContent:'space-evenly',backgroundColor:"#464965",borderRadius:10}}>
@@ -104,10 +101,9 @@ export default class Accueil extends Component{
                                 <Text style={{color:'white'}}>Louez l'Éternel!Chantez à l'Éternel un cantique nouveau! Chantez ses louages dans l'assemblée des fideles!</Text>
                                 <Text style={{position:'absolute',bottom:2,right:2}}>Psaumes 149.1</Text>
                             </View>  
-                        </View>
-                                          
+                        </View>                                          
                     </View>
-                </ImageBackground>            
+                </ImageBackground>         
             )
         }
         if(this.state.reglages==true){
@@ -115,19 +111,17 @@ export default class Accueil extends Component{
                 <ImageBackground source={require('../assets/appFO1.png')} style={{height:'100%',width:'100%'}}>
                     <View style={style.v1}>
                         <View style={{backgroundColor:"#6767ff",flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center',width:'80%',height:'8%',borderRadius:10,position:'absolute',top:15}}>
-                            <TouchableOpacity onPress={()=>{this.setState({chants:true,reglages:false})}}><View style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Chants</Text></View> </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{this.setState({accueil:true,reglages:false})}}><View style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Accueil</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={()=>{this.setState({reglages:true})}}><View style={{backgroundColor:"#07080d",borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Reglages</Text></View></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{this.setState({accueil:true,chants:false})}} style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Chants</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{this.setState({accueil:true,chants:false})}} style={{backgroundColor:'#464965',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Accueil</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{this.setState({reglages:true,chants:false})}} style={{backgroundColor:'#07080d',borderRadius:5}}><Text style={{fontSize:15,fontWeight:'bold',color:'white'}}>Reglages</Text></TouchableOpacity>
                         </View>
                         <View style={{height:'40%',width:'80%',justifyContent:'space-evenly',backgroundColor:"#464965"}}>
                             <Text>Ici le message de reglages...</Text>
                         </View>                    
                     </View>
-                </ImageBackground>            
+                </ImageBackground>         
             )
-        }
-       
-        
+        }        
     }
 }
 const style = StyleSheet.create({

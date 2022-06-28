@@ -1,14 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Accueil from './front/accueil'
+import Fenetre from './front/fenetres'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!
-        Et ce texte vient dépuis le developpeur Front Gloire
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <Fenetre />
   );
 }
 
